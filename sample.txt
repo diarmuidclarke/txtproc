@@ -1,0 +1,32 @@
+date#5
+15/3/2021
+
+Document ID:#10
+J301/0123
+
+Issue 1
+
+title#20
+My big plans for 2021
+
+Summary
+Fred has so many plans, we had a whiteboard session. After putting over 200 ideas on a whiteboard we realised he was quite mad.
+
+
+author#15
+Fred Guy
+
+
+
+signed by
+Carl Jung
+
+approved by:Sigmond Freud
+
+This data is export controlled
+				
+
+Table of Contents
+1.1 Initial concerns
+1.2 Men in white coats
+1.3 Funny farm
