@@ -65,7 +65,7 @@ def main():
 	
 	# analyse tag order, and tag expressions
 	f = open(cwd + '/sample.txt','r')
-	txt = f.read()
+	txt_full = f.read()
 
 	for tag in tag_expressions.keys():
 		expr_list = tag_expressions[tag]
@@ -73,7 +73,7 @@ def main():
 		li = sys.maxsize
 
 		for exp in expr_list:
-			i = txt.find(exp)
+			i = txt_full.lower().find(exp.lower())
 			if i <0:
 				continue
 			if i < li:
@@ -82,6 +82,37 @@ def main():
 
 	pp = pprint.PrettyPrinter()
 	pp.pprint(tagloc)
+
+	get_title(txt_full, tagloc)
+
+def get_title(txt_full, tagloc):
+	title = None
+	idx = [i for i in tagloc.keys() if tagloc[i] == 'title']
+	txt2search = get_txt_to_search(idx[0], txt_full, tagloc)
+	print('txt2srch>>>' + txt2search)
+	return title
+
+def get_txt_to_search(idx, txt_full, tagloc):
+	next_tag = False
+	idx_start = idx
+	idx_end = -1
+	txt_to_search = ''
+	for tag in tagloc.keys():
+		if next_tag:
+			idx_end = tag
+			break
+		if tag == idx:
+			next_tag = True
+
+	if next_tag:
+		txt_to_search = txt_full[idx_start:idx_end]
+	else:
+		txt_to_search = txt_full[idx_start:]
+
+	return txt_to_search
+
+
+
 
 if __name__ == '__main__':
 	main()
