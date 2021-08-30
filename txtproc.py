@@ -1,8 +1,10 @@
 import sys
 import os
+import pprint
 
 def main():
 	cwd =  os.getcwd()
+	tagloc = {}
 
 	tag_expressions = {
 		'date' :
@@ -14,7 +16,7 @@ def main():
 			[
 				'Document ID:',
 				'Document ID:#10',
-				'Document number'
+				'Document number;',
 			],
 		'issue' :
 			[
@@ -63,10 +65,23 @@ def main():
 	
 	# analyse tag order, and tag expressions
 	f = open(cwd + '/sample.txt','r')
+	txt = f.read()
+
 	for tag in tag_expressions.keys():
 		expr_list = tag_expressions[tag]
 		print('T:' + tag + ' >>> ' + str(expr_list))
+		li = sys.maxsize
 
+		for exp in expr_list:
+			i = txt.find(exp)
+			if i <0:
+				continue
+			if i < li:
+				li = i
+				tagloc[i]=tag
+
+	pp = pprint.PrettyPrinter()
+	pp.pprint(tagloc)
 
 if __name__ == '__main__':
 	main()
